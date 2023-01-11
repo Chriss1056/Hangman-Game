@@ -175,9 +175,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Source-Files\game_instance.cpp" />
     <ClCompile Include="src\Source-Files\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Header-Files\game_instance.hpp" />
     <ClInclude Include="src\Header-Files\main.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
