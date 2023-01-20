@@ -1,5 +1,8 @@
 #pragma once
 
+#include <conio.h>
+#include <windows.h>
+
 class game_utility
 {
 protected:
