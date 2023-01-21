@@ -24,23 +24,29 @@ int game_utility::change_foreground_color()
 	return 0;
 }
 
-//TODO
 int game_utility::cursor_fill_level(int fill_level)
 {
-	HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
-	CONSOLE_CURSOR_INFO* cInfo = new CONSOLE_CURSOR_INFO;
+	const HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
+	auto CONSOLE_CURSOR_INFO* cInfo = new CONSOLE_CURSOR_INFO;
 	if (fill_level <= 0)
 	{
 		fill_level = 0;
 	}
-	if ()
-	if (fill_level == 0)
+	if (fill_level >= 100)
+	{
+		fill_level = 100;
+	}
+	if (fill_level != 0)
+	{
+		cInfo->bVisible = true;
+		cInfo->dwSize = fill_level;
+	}
+	else
 	{
 		cInfo->bVisible = false;
 		cInfo->dwSize = 0;
 	}
-	else 
-	SetConsoleCursorInfo(handle, )
+	SetConsoleCursorInfo(handle, cInfo);
 	free(handle);
 	return 0;
 }
