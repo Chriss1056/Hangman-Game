@@ -24,9 +24,23 @@ int game_utility::change_foreground_color()
 	return 0;
 }
 
+//TODO
 int game_utility::cursor_fill_level(int fill_level)
 {
 	HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_CURSOR_INFO* cInfo = new CONSOLE_CURSOR_INFO;
+	if (fill_level <= 0)
+	{
+		fill_level = 0;
+	}
+	if ()
+	if (fill_level == 0)
+	{
+		cInfo->bVisible = false;
+		cInfo->dwSize = 0;
+	}
+	else 
+	SetConsoleCursorInfo(handle, )
 	free(handle);
 	return 0;
 }
