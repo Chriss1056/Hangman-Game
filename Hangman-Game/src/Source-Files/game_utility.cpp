@@ -27,7 +27,7 @@ int game_utility::change_foreground_color()
 int game_utility::cursor_fill_level(int fill_level)
 {
 	const HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
-	auto CONSOLE_CURSOR_INFO* cInfo = new CONSOLE_CURSOR_INFO;
+	CONSOLE_CURSOR_INFO* cInfo = new CONSOLE_CURSOR_INFO;
 	if (fill_level <= 0)
 	{
 		fill_level = 0;

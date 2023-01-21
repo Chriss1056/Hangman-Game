@@ -1,16 +1,7 @@
 #include "game_instance.hpp"
 
-int intro()
-{
-	return 0;
-}
-
 int game_instance::entry_point()
 {
-	if (intro())
-	{
-		return 0;
-	}
 	return 1;
 }
 
