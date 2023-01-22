@@ -18,9 +18,15 @@
     <ClInclude Include="src\Header-Files\dllmain.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Header-Files\dlldrawing.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Source-Files\dllmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Source-Files\dlldrawing.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

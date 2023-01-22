@@ -171,9 +171,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Header-Files\dlldrawing.hpp" />
     <ClInclude Include="src\Header-Files\dllmain.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Source-Files\dlldrawing.cpp" />
     <ClCompile Include="src\Source-Files\dllmain.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
