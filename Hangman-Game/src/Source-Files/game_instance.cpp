@@ -1,19 +1,23 @@
 #include "game_instance.hpp"
 
-int game_instance::check_symbol(int key)
+int game_instance::check_symbol(char key)
 {
 	int min = 0;
 	for(int i = 0; i < word_to_search_.size(); i++)
 	{
 		if (word_to_search_[i] == key)
 		{
-			symbols_to_show_[i] = word_to_search_[i];
+			symbols_to_show_[i] = key;
 			min = 1;
 		}
 	}
 	if (min == 0)
 	{
 		hangman_level_i_++;
+		int size = tried_characters_.size();
+		size++;
+		tried_characters_.resize(size);
+		tried_characters_[size] = key;
 	}
 	return 0;
 }
@@ -26,11 +30,17 @@ int game_instance::game_loop()
 		system("cls");
 		hangman(hangman_level_i_);
 		game_utility::cursor_fill_level(25);
+		for (int i = 0; i < symbols_to_show_.size(); i++)
+		{
+			std::cout << symbols_to_show_[i];
+		}
+		std::cout << std::endl;
+		std::cout << std::endl;
 		std::cout << ">> ";
 		while (!_kbhit()) {}
 		if (_kbhit())
 		{
-			result = check_symbol(game_utility::get_key());
+			result = check_symbol((char)game_utility::get_key());
 		}
 	} while (!result);
 	return 0;

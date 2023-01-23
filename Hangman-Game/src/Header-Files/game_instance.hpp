@@ -14,9 +14,9 @@ public:
 	int game_state;
 private:
 	static int game_loop();
-	static int check_symbol(int key);
-	static std::vector<char> word_to_search_;
-	static std::vector<char> symbols_to_show_;
-	static std::vector<char> tried_characters_;
-	static int hangman_level_i_;
+	static int check_symbol(char key);
+	inline static std::vector<char> word_to_search_;
+	inline static std::vector<char> symbols_to_show_;
+	inline static std::vector<char> tried_characters_;
+	inline static int hangman_level_i_;
 };
