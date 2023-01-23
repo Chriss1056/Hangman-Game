@@ -15,21 +15,18 @@ void game_utility::goto_xy(short x, short y)
 	const HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
 	const COORD cursor = {x, y};
 	SetConsoleCursorPosition(handle, cursor);
-	free(handle);
 }
 
 void game_utility::change_background_color(background color)
 {
 	const HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(handle, (WORD)color);
-	free(handle);
 }
 
 void game_utility::change_foreground_color(foreground color)
 {
 	const HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(handle, (WORD)color);
-	free(handle);
 }
 
 void game_utility::cursor_fill_level(int fill_level)
@@ -55,5 +52,4 @@ void game_utility::cursor_fill_level(int fill_level)
 		c_info->dwSize = 0;
 	}
 	SetConsoleCursorInfo(handle, c_info);
-	free(handle);
 }

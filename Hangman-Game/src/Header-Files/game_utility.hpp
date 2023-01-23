@@ -3,6 +3,8 @@
 #include <conio.h>
 #include <windows.h>
 
+#define ENTER_KEY 13
+
 enum class foreground
 {
 	XXBD = FOREGROUND_BLUE,
@@ -39,12 +41,11 @@ enum class background
 	RGBL = BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY
 };
 
-class game_utility
+namespace game_utility
 {
-protected:
-	static int get_key();
-	static void goto_xy(short x, short y);
-	static void change_background_color(background color);
-	static void change_foreground_color(foreground color);
-	static void cursor_fill_level(int fill_level);
+	int get_key();
+	void goto_xy(short x, short y);
+	void change_background_color(background color);
+	void change_foreground_color(foreground color);
+	void cursor_fill_level(int fill_level);
 };

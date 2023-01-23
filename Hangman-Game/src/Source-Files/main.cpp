@@ -1,11 +1,18 @@
-#include <iostream>
 #include "main.hpp"
+
+#include <cstdio>
 
 int main()
 {
-	game_instance game_instance("test");
-	game_instance.entry_point();
-	std::cout << "Hello World!" << std::endl;
-	std::cin.get();
+	std::cout << "Please choose a word: ";
+	std::string word;
+	std::cin >> word;
+	game_instance game_instance(word);
+	system("cls");
+	while (game_instance.game_state)
+	{
+		game_instance.game_state = game_instance.entry_point();
+	}
+	game_instance.leave();
 	return 0;
 }
