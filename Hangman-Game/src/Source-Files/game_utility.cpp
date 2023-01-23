@@ -10,24 +10,32 @@ int game_utility::get_key()
 	return key;
 }
 
-int game_utility::change_background_color()
-{
-	HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
-	free(handle);
-	return 0;
-}
-
-int game_utility::change_foreground_color()
-{
-	HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
-	free(handle);
-	return 0;
-}
-
-int game_utility::cursor_fill_level(int fill_level)
+void game_utility::goto_xy(short x, short y)
 {
 	const HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
-	CONSOLE_CURSOR_INFO* cInfo = new CONSOLE_CURSOR_INFO;
+	const COORD cursor = {x, y};
+	SetConsoleCursorPosition(handle, cursor);
+	free(handle);
+}
+
+void game_utility::change_background_color(background color)
+{
+	const HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(handle, (WORD)color);
+	free(handle);
+}
+
+void game_utility::change_foreground_color(foreground color)
+{
+	const HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(handle, (WORD)color);
+	free(handle);
+}
+
+void game_utility::cursor_fill_level(int fill_level)
+{
+	const HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_CURSOR_INFO* c_info = new CONSOLE_CURSOR_INFO;
 	if (fill_level <= 0)
 	{
 		fill_level = 0;
@@ -38,15 +46,14 @@ int game_utility::cursor_fill_level(int fill_level)
 	}
 	if (fill_level != 0)
 	{
-		cInfo->bVisible = true;
-		cInfo->dwSize = fill_level;
+		c_info->bVisible = true;
+		c_info->dwSize = fill_level;
 	}
 	else
 	{
-		cInfo->bVisible = false;
-		cInfo->dwSize = 0;
+		c_info->bVisible = false;
+		c_info->dwSize = 0;
 	}
-	SetConsoleCursorInfo(handle, cInfo);
+	SetConsoleCursorInfo(handle, c_info);
 	free(handle);
-	return 0;
 }

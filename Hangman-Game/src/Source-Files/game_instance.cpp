@@ -14,4 +14,5 @@ game_instance::game_instance(const char* word)
 	hangman_level_i_ = 0;
 	failed_attempts_i_ = 0;
 	game_state_ = 1;
+	SetConsoleTitleA("Hangman Game");
 }
