@@ -9,6 +9,6 @@ int main()
 	system("cls");
 	game_instance.entry_point();
 	game_instance.leave();
-	std::cin.get();
+	system("pause");
 	return 0;
 }
