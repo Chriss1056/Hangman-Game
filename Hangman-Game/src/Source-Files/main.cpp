@@ -1,7 +1,5 @@
 #include "main.hpp"
 
-#include <cstdio>
-
 int main()
 {
 	std::cout << "Please choose a word: ";
@@ -9,10 +7,8 @@ int main()
 	std::cin >> word;
 	game_instance game_instance(word);
 	system("cls");
-	while (game_instance.game_state)
-	{
-		game_instance.game_state = game_instance.entry_point();
-	}
+	game_instance.entry_point();
 	game_instance.leave();
+	std::cin.get();
 	return 0;
 }

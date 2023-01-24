@@ -7,22 +7,26 @@ int game_instance::check_symbol(char key)
 	{
 		if (word_to_search_[i] == key)
 		{
-			symbols_to_show_[i] = key;
+			if (symbols_to_show_[i] != key)
+			{
+				completion_level_i_++;
+				symbols_to_show_[i] = key;
+			}
 			min = 1;
 		}
 	}
 	if (min == 0)
 	{
 		hangman_level_i_++;
-		int size = tried_characters_.size();
+		size_t size = tried_characters_.size();
 		size++;
 		tried_characters_.resize(size);
-		tried_characters_[size] = key;
+		tried_characters_[size-1] = key;
 	}
 	return 0;
 }
 
-int game_instance::game_loop()
+void game_instance::game_loop()
 {
 	int result = 1;
 	do
@@ -32,36 +36,73 @@ int game_instance::game_loop()
 		game_utility::cursor_fill_level(25);
 		for (int i = 0; i < symbols_to_show_.size(); i++)
 		{
-			std::cout << symbols_to_show_[i];
+			std::cout << symbols_to_show_[i] << " ";
 		}
-		std::cout << std::endl;
-		std::cout << std::endl;
-		std::cout << ">> ";
-		while (!_kbhit()) {}
+		std::cout << std::endl << std::endl;
+		for (int i = 0; i < tried_characters_.size(); i++)
+		{
+			std::cout << tried_characters_[i] << ", ";
+		}
+		std::cout << std::endl << std::endl;
+		std::cout << "Please Press a Key >> ";
+		while (!_kbhit());
 		if (_kbhit())
 		{
-			result = check_symbol((char)game_utility::get_key());
+			result = check_symbol(static_cast<char>(game_utility::get_key()));
+		}
+		if (hangman_level_i_ > 5)
+		{
+			game_state = 1;
+			break;
+		}
+		if (completion_level_i_ == symbols_to_show_.size())
+		{
+			game_state = 0;
+			break;
 		}
 	} while (!result);
-	return 0;
 }
 
-int game_instance::entry_point()
+void game_instance::entry_point()
 {
 	game_utility::cursor_fill_level(0);
 	if (!intro())
 	{
-		return 0;
+		game_state = -1;
+		return;
 	}
 	system("cls");
 	game_utility::cursor_fill_level(25);
 	
-	return game_loop();
+	game_loop();
 }
 
 void game_instance::leave()
 {
 	system("cls");
+	if(game_state == 0)
+	{
+		std::cout << "                 Good Job! You have ";
+		game_utility::change_foreground_color(foreground::RXXD);
+		std::cout << "WON";
+		game_utility::change_foreground_color(foreground::RGBD);
+		std::cout << " the Game! See you soon!                 " << std::endl << std::endl;
+	}
+	else if (game_state == 1)
+	{
+		std::cout << "              I am sorry, but you ";
+		game_utility::change_foreground_color(foreground::RXXD);
+		std::cout << "LOST";
+		game_utility::change_foreground_color(foreground::RGBD);
+		std::cout << " the Game. Try again later.              " << std::endl << std::endl;
+	}
+	else if (game_state == -1)
+	{
+		game_utility::change_foreground_color(foreground::RXXD);
+		std::cout << "Fatal Error." << std::endl;
+		game_utility::change_foreground_color(foreground::RGBD);
+		return;
+	}
 	outro();
 }
 
@@ -73,13 +114,14 @@ game_instance::game_instance(std::string word)
 	symbols_to_show_.resize(len);
 	for (int i = 0; i < word_to_search_.size(); i++)
 	{
-		word_to_search_[i] = word[0];
+		word_to_search_[i] = word[i];
 	}
 	for (int i = 0; i < symbols_to_show_.size(); i++)
 	{
 		symbols_to_show_[i] = '_';
 	}
 	hangman_level_i_ = 0;
+	completion_level_i_ = 0;
 	game_state = 1;
 	SetConsoleTitleA("Hangman Game");
 }
