@@ -27,6 +27,9 @@
     <ClCompile Include="src\Source-Files\game_drawings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Source-Files\file_handler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Header-Files\main.hpp">
@@ -39,6 +42,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Header-Files\game_drawings.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Header-Files\file_handler.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
