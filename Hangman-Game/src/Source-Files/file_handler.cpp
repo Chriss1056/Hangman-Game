@@ -52,7 +52,11 @@ std::string file_handler::get_random_word(const std::string& filename)
 		}
 	}
 	srand(time(0));
-	const int chosen = rand() % words.size();
+	int chosen;
+	if (file.is_open())
+		chosen = rand() % (words.size() - 2 + 1) + 2;
+	else
+		chosen = 0;
 	cleanup(file);
 	return words[chosen];
 }
